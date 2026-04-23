@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { Submission } from "@prisma/client";
 import ApproveRejectButtons from "./Actions";
 
 export default async function SubmissionsPage() {
@@ -13,7 +12,7 @@ export default async function SubmissionsPage() {
       <h1 className="text-2xl font-bold mb-6">Pending Submissions</h1>
 
       <div className="space-y-4">
-        {submissions.map((item: Submission) => (
+        {submissions.map((item) => (
           <div key={item.id} className="p-4 border rounded bg-white">
             
             <h2 className="font-semibold">{item.word}</h2>
@@ -29,7 +28,7 @@ export default async function SubmissionsPage() {
               {item.language}
             </p>
 
-            {/* 🔥 Actions */}
+          
             <ApproveRejectButtons id={item.id} />
           </div>
         ))}

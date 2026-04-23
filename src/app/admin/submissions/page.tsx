@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import ApproveRejectButtons from "./Actions";
 
+export const dynamic = "force-dynamic";
+
 export default async function SubmissionsPage() {
   const submissions = await prisma.submission.findMany({
     where: { status: "PENDING" },

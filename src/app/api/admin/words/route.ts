@@ -11,7 +11,6 @@ export async function GET(req: Request) {
   const limit = 10;
   const skip = (page - 1) * limit;
 
-  // ✅ Build where safely
   const where: any = {};
 
   if (q) {

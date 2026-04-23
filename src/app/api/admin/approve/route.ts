@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
-    // 🔍 Check duplicate
+    // To Check duplicate
    const exists = await prisma.word.findFirst({
   where: {
     word: {
@@ -24,7 +24,6 @@ export async function POST(req: Request) {
 });
 
     if (exists) {
-      // ❌ Duplicate found
       return NextResponse.json(
         { error: "Word already exists" },
         { status: 400 }

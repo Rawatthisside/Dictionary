@@ -21,7 +21,7 @@ export default function Home() {
 
   const activeRequestRef = useRef<AbortController | null>(null);
 
-  // 🔥 Debounce logic
+  //  Debounce logic
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(query.trim());
@@ -30,7 +30,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [query]);
 
-  // 🔥 Actual API call
+  //  Actual API call
   useEffect(() => {
     const search = async () => {
       setError("");

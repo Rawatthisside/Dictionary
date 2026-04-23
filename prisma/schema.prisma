@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Word {
+  id        Int      @id @default(autoincrement())
+  word      String   @unique
+  word_en   String?
+  meaning   String
+  example   String?  
+  language Language @default(GARHWALI)  
+  createdAt DateTime @default(now())
+
+  @@index([word])
+}
+
+enum Language {
+  KUMAONI
+  GARHWALI
+  JAUNSARI
+}
+
+model Submission {
+  id        Int      @id @default(autoincrement())
+  word      String
+  word_en   String?
+  meaning   String
+  example   String?
+  language  Language
+  status    Status   @default(PENDING)
+  createdAt DateTime @default(now())
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}

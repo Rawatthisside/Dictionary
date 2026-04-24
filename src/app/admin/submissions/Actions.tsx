@@ -13,7 +13,7 @@ export default function ApproveRejectButtons({ id }: { id: number }) {
   const data = await res.json();
 
   if (!res.ok) {
-    alert(data.error); // 🔥 show duplicate warning
+    alert(data.error); // show duplicate warning
     return;
   }
 

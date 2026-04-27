@@ -32,21 +32,23 @@ export default function ApproveRejectButtons({ id }: { id: number }) {
     location.reload();
   };
 
-  return (
-    <div className="mt-3 flex gap-2">
-      <button
-        onClick={approve}
-        className="px-3 py-1 bg-green-600 text-white rounded text-sm"
-      >
-        Approve
-      </button>
+ return (
+  <div className="mt-4 flex gap-3">
+    <button
+      onClick={approve}
+      className="flex-1 px-4 py-2 rounded-lg cursor-pointer bg-green-600 text-white text-sm font-medium 
+      hover:bg-green-700 active:scale-95 transition-all duration-150 shadow-sm"
+    >
+       Approve
+    </button>
 
-      <button
-        onClick={reject}
-        className="px-3 py-1 bg-red-600 text-white rounded text-sm"
-      >
-        Reject
-      </button>
-    </div>
-  );
+    <button
+      onClick={reject}
+      className="flex-1 px-4 py-2 rounded-lg cursor-pointer bg-red-600 text-white text-sm font-medium 
+      hover:bg-red-700 active:scale-95 transition-all duration-150 shadow-sm"
+    >
+       Reject
+    </button>
+  </div>
+);
 }

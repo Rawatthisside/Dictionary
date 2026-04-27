@@ -87,105 +87,120 @@ export default function Home() {
   fetchWord();
 }, []);
 
-  return (
-   <div className="min-h-screen bg-linear-to-br from-zinc-50 to-zinc-100">
-    <img src="/dictionarybg.png" alt="Background" className="fixed inset-0 w-full h-[50%] pointer-events-none" />
-  <div className="max-w-2xl mx-auto px-6 py-16">
+return (
+  <div className="min-h-screen bg-zinc-100 relative overflow-hidden">
 
-    {/* Header */}
-    <div className="text-center mb-10">
-      <h1 className="text-4xl font-bold tracking-tight text-zinc-900">
-        Dictionary
-      </h1>
-      <p className="text-zinc-500 mt-2">
-        Explore words across languages
-      </p>
+    <div className="absolute top-0 left-0 w-full h-70 z-0 overflow-hidden pointer-events-none">
+      <div className="animate-scrollWords">
+        <img
+          src="/dictionarybg.png"
+          alt="dictionary-bg"
+          className="w-[200%] max-w-none"
+        />
+      </div>
     </div>
 
-    {/* Search Box */}
-    <div className="relative">
-      <input
-        className="w-full p-4 rounded-xl border border-zinc-200 shadow-sm 
-        focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-        placeholder="Search words..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+    {/* Yellow Background */}
+    <img
+      src="/yellowbg.png"
+      alt="bg"
+      className="absolute top-60 left-0 w-full z-0 rotate-180"
+    />
 
-      {isLoading && (
-        <span className="absolute right-4 top-4 text-sm text-zinc-900">
-          Searching...
-        </span>
-      )}
-    </div>
-{wordOfDay && (
-  <div className="mt-8 p-5 rounded-xl bg-white border border-zinc-200 shadow-sm">
-    
-    <p className="text-xs text-blue-600 mb-1 font-medium">
-      Word of the Day
-    </p>
+    {/* Main Content */}
+    <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-10">
 
-    <h2 className="text-2xl font-bold text-zinc-900">
-      {wordOfDay.word}
-    </h2>
+      {/* Header */}
+      <div className="text-center mt-10">
+        <h1 className="text-3xl sm:text-5xl font-bold text-blue-700 tracking-tight">
+          गढ़वाली Dictionary
+        </h1>
+      </div>
 
-    <p className="text-zinc-700 mt-1">
-      {wordOfDay.meaning}
-    </p>
+      {/* Search Bar */}
+      <div className="mt-40 flex items-center bg-white rounded-2xl shadow-lg border border-zinc-200 overflow-hidden">
 
-    {wordOfDay.example && (
-      <p className="text-sm text-zinc-500 italic mt-2">
-        “{wordOfDay.example}”
-      </p>
-    )}
+        <input
+          className="flex-1 px-5 py-3 sm:py-2 text-base font-bold placeholder:text-zinc-500 sm:text-lg outline-none"
+          placeholder="Search a word or phrase"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
 
-    <span className="inline-block mt-3 text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
-      {wordOfDay.language}
-    </span>
-  </div>
-)}
-    {/* Messages */}
-    <div className="mt-4">
-      {error && <p className="text-sm text-red-500">{error}</p>}
-      {!isLoading && !error && query && results.length === 0 && (
-        <p className="text-sm text-zinc-500">No matches found</p>
-      )}
-    </div>
+        <button className="bg-yellow-400 hover:bg-yellow-600 text-black font-bold px-6 py-3 sm:py-4">
+          Search
+        </button>
+      </div>
 
-    {/* Results */}
-    <div className="mt-6 space-y-4">
-      {results.map((item) => (
-        <Link key={item.id} href={`/word/${item.word}`}>
-          <div className="p-5 rounded-xl bg-white shadow-sm border border-zinc-200 hover:shadow-md transition cursor-pointer">
+      {/*  Word of the Day */}
+      {wordOfDay && (
+        <div className="mt-20 bg-white rounded-2xl shadow-xl border border-zinc-200 p-6 sm:p-8">
 
-            {/* Top row */}
-            <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-zinc-900">
-                {item.word}
-              </h2>
+          <p className="text-sm text-zinc-500 mb-1">
+            Word of the Day
+          </p>
 
-              <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
-                {item.language}
-              </span>
-            </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-blue-700">
+            {wordOfDay.word}
+          </h2>
 
-            {/* Meaning */}
-            <p className="mt-2 text-zinc-700">
-              {item.meaning}
+          <p className="text-zinc-600 mt-2 text-sm sm:text-base">
+            {wordOfDay.meaning}
+          </p>
+
+          {wordOfDay.example && (
+            <p className="mt-3 text-sm italic text-zinc-500 border-l-2 pl-3">
+              “{wordOfDay.example}”
             </p>
+          )}
 
-            {/* Example */}
-            {item.example && (
-              <p className="mt-3 text-sm text-zinc-500 italic">
-                “{item.example}”
+          <span className="inline-block mt-4 text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
+            {wordOfDay.language}
+          </span>
+
+        </div>
+      )}
+
+      {/* Messages */}
+      <div className="mt-4 text-center">
+        {error && <p className="text-sm text-red-500">{error}</p>}
+        {!isLoading && !error && query && results.length === 0 && (
+          <p className="text-sm text-zinc-500">No matches found</p>
+        )}
+      </div>
+
+      {/* Results */}
+      <div className="mt-8 space-y-4">
+        {results.map((item) => (
+          <Link key={item.id} href={`/word/${item.word}`}>
+            <div className="p-5 bg-white rounded-xl border border-zinc-200 shadow-sm hover:shadow-md transition cursor-pointer">
+
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg sm:text-xl font-semibold text-zinc-900">
+                  {item.word}
+                </h2>
+
+                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
+                  {item.language}
+                </span>
+              </div>
+
+              <p className="mt-2 text-zinc-700">
+                {item.meaning}
               </p>
-            )}
-          </div>
-        </Link>
-      ))}
-    </div>
 
+              {item.example && (
+                <p className="mt-2 text-sm italic text-zinc-500">
+                  “{item.example}”
+                </p>
+              )}
+            </div>
+          </Link>
+        ))}
+      </div>
+
+    </div>
   </div>
-</div>
-  );
+);
+
 }

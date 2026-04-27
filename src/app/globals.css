@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+
+@keyframes scrollWords {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scrollWords {
+  animation: scrollWords 20s linear infinite;
+}

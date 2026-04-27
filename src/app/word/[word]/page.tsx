@@ -21,7 +21,6 @@ export default async function WordPage({
     <div className="min-h-screen bg-zinc-50">
       <div className="max-w-2xl mx-auto px-6 py-10">
 
-        {/* 🔙 Back button */}
         <Link
           href="/"
           className="inline-block mb-6 text-sm text-blue-600 hover:underline"
@@ -29,7 +28,6 @@ export default async function WordPage({
           ← Back to search
         </Link>
 
-        {/* 🍞 Breadcrumbs */}
         <div className="mb-4 text-sm text-zinc-500">
           <Link href="/" className="hover:underline">
             Home
@@ -40,7 +38,7 @@ export default async function WordPage({
           </span>
         </div>
 
-        {/* 📦 Word Card */}
+        {/*  Word Card */}
         <div className="p-6 rounded-xl bg-white shadow-sm border border-zinc-200">
 
           <h1 className="text-3xl font-bold text-zinc-900">

@@ -26,7 +26,7 @@ export default function WordsClient() {
 
 return (
   <div>
-    {/* 🔍 Search + Filter */}
+    {/* Searching bar */}
     <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-6">
       <input
         value={query}
@@ -53,7 +53,7 @@ return (
       </select>
     </div>
 
-    {/* 📚 Results */}
+    {/*  Results */}
     <div className="space-y-3 sm:space-y-4">
       {data.map((item) => (
         <div
@@ -82,7 +82,7 @@ return (
       ))}
     </div>
 
-    {/* 📄 Pagination */}
+    {/*  Pagination */}
     <div className="flex items-center justify-between mt-4 sm:mt-6 gap-2">
       <button
         disabled={page === 1}

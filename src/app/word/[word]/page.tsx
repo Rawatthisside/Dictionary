@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
 export default async function WordPage({
@@ -18,49 +19,192 @@ export default async function WordPage({
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <div className="max-w-2xl mx-auto px-6 py-10">
+  <div className="relative min-h-screen overflow-hidden bg-[#f4f7fb] text-zinc-900">
+
+  {/* ================= BACKGROUND ================= */}
+  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
+   
+
+    <div className="absolute top-0 left-0 h-[450px] w-[450px] rounded-full bg-blue-200/30 blur-3xl" />
+
+    <div className="absolute bottom-0 right-0 h-[450px] w-[450px] rounded-full bg-violet-200/30 blur-3xl" />
+
+  </div>
+
+  {/* ================= MAIN ================= */}
+  <div className="relative z-10 mx-auto max-w-5xl px-5 py-10 sm:px-6 sm:py-14">
+
+    {/* ================= TOP BAR ================= */}
+    <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+
+      {/* Left */}
+      <div className="flex items-center gap-4">
 
         <Link
           href="/"
-          className="inline-block mb-6 text-sm text-blue-600 hover:underline"
+          className="group inline-flex items-center gap-2 rounded-2xl border border-white/40 bg-white/70 px-5 py-3 text-sm font-medium text-zinc-700 shadow-sm backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
         >
-          ← Back to search
+
+          <span className="transition-transform duration-300 group-hover:-translate-x-1">
+            ←
+          </span>
+
+          Back to search
+
         </Link>
 
-        <div className="mb-4 text-sm text-zinc-500">
-          <Link href="/" className="hover:underline">
-            Home
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-zinc-800 font-medium">
-            {result.word}
-          </span>
-        </div>
+        <div className="hidden h-10 w-px bg-zinc-200 sm:block" />
 
-        {/*  Word Card */}
-        <div className="p-6 rounded-xl bg-white shadow-sm border border-zinc-200">
+      </div>
 
-          <h1 className="text-3xl font-bold text-zinc-900">
-            {result.word}
-          </h1>
+      {/* Add Word Button */}
+      <Link
+        href="/submit"
+        className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-xl transition-all hover:-translate-y-0.5 hover:bg-gray-700"
+      >
 
-          <p className="mt-4 text-lg text-zinc-700">
-            {result.meaning}
-          </p>
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
 
-          {result.example && (
-            <p className="mt-4 text-sm text-zinc-500 italic">
-              “{result.example}”
-            </p>
-          )}
+          +
 
-          <span className="inline-block mt-5 text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded">
+        </span>
+
+        Add New Word
+
+      </Link>
+
+    </div>
+
+    {/* ================= BREADCRUMB ================= */}
+    <div className="mb-8 flex items-center gap-2 text-sm text-zinc-500">
+
+      <Link
+        href="/"
+        className="transition-colors hover:text-blue-600"
+      >
+        Home
+      </Link>
+
+      <span>/</span>
+
+      <span className="font-medium text-zinc-800">
+        {result.word}
+      </span>
+
+    </div>
+
+  {/* ================= WORD CARD ================= */}
+<div className="relative overflow-hidden rounded-[32px] border border-white/50 bg-white/75 shadow-[0_12px_50px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+
+  {/* Top Accent */}
+  <div className="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
+
+  <div className="p-5 sm:p-7">
+
+    {/* ================= TOP ================= */}
+    <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+
+      {/* Left */}
+      <div className="min-w-0 flex-1">
+
+        {/* Language */}
+        <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5">
+
+          <div className="h-2 w-2 rounded-full bg-blue-500" />
+
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-700">
             {result.language}
           </span>
 
         </div>
+
+        {/* Word */}
+        <h1 className="mt-4 break-words text-4xl font-black tracking-tight text-zinc-900 sm:text-5xl">
+          {result.word}
+        </h1>
+
       </div>
+
     </div>
+
+    {/* ================= MEANING ================= */}
+    <div className="mt-8 rounded-[24px] border border-zinc-100 bg-zinc-50/80 p-5">
+
+      <div className="mb-3 flex items-center gap-2">
+
+        <div className="h-5 w-1 rounded-full bg-blue-500" />
+
+        <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
+          Meaning
+        </h3>
+
+      </div>
+
+      <p className="text-[17px] leading-8 text-zinc-700">
+        {result.meaning}
+      </p>
+
+    </div>
+
+    {/* ================= EXAMPLE ================= */}
+    {result.example && (
+      <div className="mt-5 rounded-3xl border border-zinc-100 bg-white p-5 shadow-sm">
+
+        <div className="mb-3 flex items-center gap-2">
+
+          <div className="h-5 w-1 rounded-full bg-violet-500" />
+
+          <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
+            Example
+          </h3>
+
+        </div>
+
+        <p className="italic leading-8 text-zinc-600">
+          “{result.example}”
+        </p>
+
+      </div>
+    )}
+
+    {/* ================= BOTTOM ================= */}
+    <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-100 pt-5">
+
+      
+
+   
+
+    </div>
+
+  </div>
+
+</div>
+
+        {/* ================= ACTIONS ================= */}
+        <div className="mt-14 flex flex-wrap items-center gap-4">
+
+          <button className="rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-sm font-semibold text-zinc-700 transition-all hover:bg-zinc-100">
+            Share
+          </button>
+
+          <Link
+            href="/add-word"
+            className="rounded-2xl border border-blue-200 bg-blue-50 px-6 py-3 text-sm font-semibold text-blue-700 transition-all hover:bg-blue-100"
+          >
+            Add Similar Word
+          </Link>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
   );
 }

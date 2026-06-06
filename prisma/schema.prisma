@@ -11,11 +11,14 @@ model Word {
   word      String   @unique
   word_en   String?
   meaning   String
-  example   String?  
-  language Language @default(GARHWALI)  
+  example   String?
+  language  Language @default(GARHWALI)
   createdAt DateTime @default(now())
 
   @@index([word])
+  @@index([word_en])
+  @@index([language])
+  @@index([createdAt])
 }
 
 enum Language {

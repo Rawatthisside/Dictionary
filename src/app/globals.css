@@ -30,6 +30,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -37,4 +38,9 @@ body {
 
 .animate-scrollWords {
   animation: scrollWords 20s linear infinite;
+}
+
+
+html {
+  scroll-behavior: smooth;
 }

@@ -23,7 +23,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-[#f4f7fb] text-zinc-900 antialiased">
         {/* Main Wrapper */}
-        <div className="relative flex min-h-screen flex-col overflow-hidden">
+        <div className="relative flex min-h-screen flex-col">
           {/* Global Background */}
           <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
             <div className="absolute top-0 left-0 h-[500px] w-[500px] rounded-full bg-blue-200/30 blur-3xl" />

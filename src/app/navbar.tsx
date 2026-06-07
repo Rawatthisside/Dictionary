@@ -1,10 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const focusSearch = () => {
     const element = document.getElementById("main-search");
@@ -24,18 +37,50 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white shadow-sm backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-white/30 bg-white/80 shadow-lg backdrop-blur-xl"
+          : "border-b border-zinc-200 bg-white shadow-sm backdrop-blur"
+      }`}
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex min-h-20 items-center justify-between gap-3 py-3">
+        <div
+          className={`flex items-center justify-between gap-3 transition-all duration-300 ${
+            isScrolled ? "min-h-16 py-2" : "min-h-20 py-3"
+          }`}
+        >
           <Link
             href="/"
             className="flex min-w-0 items-center gap-3 sm:gap-4"
             onClick={() => setIsMenuOpen(false)}
           >
-       <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl sm:h-16 sm:w-16"> <img src="/Logo.svg" alt="Logo" className="h-14 w-14 object-contain sm:h-16 sm:w-16" /> </div>
+            <div
+              className={`flex shrink-0 items-center justify-center rounded-2xl transition-all duration-300 ${
+                isScrolled
+                  ? "h-14 w-14 sm:h-14 sm:w-14"
+                  : "h-20 w-20 sm:h-16 sm:w-16"
+              }`}
+            >
+              <img
+                src="/Logo.svg"
+                alt="Logo"
+                className={`object-contain transition-all duration-300 ${
+                  isScrolled
+                    ? "h-12 w-12 sm:h-14 sm:w-14"
+                    : "h-14 w-14 sm:h-16 sm:w-16"
+                }`}
+              />
+            </div>
 
             <div className="min-w-0 leading-none">
-              <h2 className="truncate text-lg font-black tracking-tight text-zinc-800 sm:text-[20px]">
+              <h2
+                className={`truncate font-black tracking-tight text-zinc-800 transition-all duration-300 ${
+                  isScrolled
+                    ? "text-base sm:text-lg"
+                    : "text-lg sm:text-[20px]"
+                }`}
+              >
                 Devasthali
               </h2>
 
@@ -163,7 +208,7 @@ export default function Navbar() {
               </Link>
 
               <a
-                href="https://www.youtube.com"
+                href="https://www.youtube.com/@TeamDevasthali"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center rounded-2xl bg-zinc-900 px-5 text-sm font-semibold text-white transition-all hover:bg-gray-700"

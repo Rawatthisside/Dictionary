@@ -123,25 +123,37 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
       </div>
 
       <main className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-6 sm:pb-16 sm:pt-16">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <HomeHeroSection
-            language={HOME_LANGUAGES[languageIndex]}
-            query={query}
-            onQueryChange={setQuery}
-            isTyping={isTyping}
-            isLoading={isLoading}
-            error={error}
-            showNoResults={showNoResults}
-          />
+       <div className="grid items-center gap-10 lg:grid-cols-2">
+  <div>
+    <HomeHeroSection
+      language={HOME_LANGUAGES[languageIndex]}
+      query={query}
+      onQueryChange={setQuery}
+      isTyping={isTyping}
+      isLoading={isLoading}
+      error={error}
+      showNoResults={showNoResults}
+    />
 
-          <WordOfDayCard wordOfDay={wordOfDay} />
-        </div>
+    {/* Mobile: results directly below search */}
+    {results.length > 0 && (
+      <div className="mt-10 lg:hidden">
+        <SearchResultsSection results={results} />
+      </div>
+    )}
+  </div>
 
-        <FloatingWebsiteCTA />
+  <WordOfDayCard wordOfDay={wordOfDay} />
+</div>
 
-        {results.length > 0 && (
-          <SearchResultsSection results={results} />
-        )}
+<FloatingWebsiteCTA />
+
+
+{results.length > 0 && (
+  <div className="hidden lg:block">
+    <SearchResultsSection results={results} />
+  </div>
+)}
 
         <section className="mt-20">
           <div className="grid gap-16 lg:grid-cols-12">

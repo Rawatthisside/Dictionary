@@ -13,14 +13,10 @@ export default function SearchResultsSection({
   results,
 }: SearchResultsSectionProps) {
   return (
-    <section className="mt-20">
+    <section className="mt-5">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <p className="text-sm text-zinc-500">Search Results</p>
-
-          <h2 className="mt-2 text-4xl font-black tracking-tight text-zinc-900">
-            Found Words
-          </h2>
+          <p className="text-sm text-zinc-500 ml-8">Search Results</p>
         </div>
 
         <div className="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-zinc-600 shadow-sm sm:block">

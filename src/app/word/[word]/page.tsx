@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import ShareButton from "@/components/word/ShareButton";
 
 export default async function WordPage({
   params,
@@ -7,7 +8,7 @@ export default async function WordPage({
   params: Promise<{ word: string }>;
 }) {
   const { word } = await params;
-  const decodedWord = decodeURIComponent(word);
+  const decodedWord = decodeURIComponent(word).trim();
 
   const result = await prisma.word.findUnique({
     where: { word: decodedWord },
@@ -17,17 +18,6 @@ export default async function WordPage({
     return <div className="p-10">Word not found</div>;
   }
 
-   const handleShare = async () => {
-  try {
-    await navigator.share({
-      title: result.word,
-      text: result.meaning,
-      url: window.location.href,
-    });
-  } catch (err) {
-    console.log("Share cancelled");
-  }
-};
 
   return (
   <div className="relative min-h-screen overflow-hidden bg-[#f4f7fb] text-zinc-900">
@@ -195,9 +185,10 @@ export default async function WordPage({
         {/* ================= ACTIONS ================= */}
         <div className="mt-14 flex flex-wrap items-center gap-4">
 
-          <button onClick={handleShare} className="rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-sm font-semibold text-zinc-700 transition-all hover:bg-zinc-100">
-            Share
-          </button>
+         <ShareButton
+  word={result.word}
+  meaning={result.meaning}
+/>
 
           <Link
             href="/add-word"

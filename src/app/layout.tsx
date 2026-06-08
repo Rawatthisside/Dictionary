@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 import Navbar from "@/app/navbar";
 import Footer from "@/app/footer";
@@ -22,6 +23,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-screen bg-[#f4f7fb] text-zinc-900 antialiased">
+         <Toaster position="top-right" />
         {/* Main Wrapper */}
         <div className="relative flex min-h-screen flex-col">
           {/* Global Background */}

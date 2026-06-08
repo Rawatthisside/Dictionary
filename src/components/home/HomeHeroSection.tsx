@@ -88,7 +88,7 @@ export default function HomeHeroSection({
             />
           </div>
 
-          <button className="flex h-12 w-full shrink-0 items-center justify-center gap-3 rounded-2xl bg-zinc-900 px-5 text-sm font-semibold text-white transition hover:bg-blue-600 sm:h-14 sm:w-auto sm:min-w-[148px] sm:px-7">
+          <button className="flex h-12 w-full shrink-0 items-center justify-center gap-3 rounded-2xl bg-zinc-900 px-5 text-sm font-semibold text-white transition hover:bg-gray-700 sm:h-14 sm:w-auto sm:min-w-[148px] sm:px-7">
             {(isTyping || isLoading) && (
               <motion.div
                 animate={{ rotate: 360 }}
@@ -110,7 +110,7 @@ export default function HomeHeroSection({
         {error && <p className="text-md font-bold text-red-500">{error}</p>}
 
         {showNoResults && (
-          <p className="text-md font-medium text-zinc-800">No matches found.</p>
+          <p className="text-md mt-5 font-bold text-zinc-800 text-center">No matches found.</p>
         )}
       </div>
     </div>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
 export default async function WordPage({
@@ -17,6 +16,18 @@ export default async function WordPage({
   if (!result) {
     return <div className="p-10">Word not found</div>;
   }
+
+   const handleShare = async () => {
+  try {
+    await navigator.share({
+      title: result.word,
+      text: result.meaning,
+      url: window.location.href,
+    });
+  } catch (err) {
+    console.log("Share cancelled");
+  }
+};
 
   return (
   <div className="relative min-h-screen overflow-hidden bg-[#f4f7fb] text-zinc-900">
@@ -184,7 +195,7 @@ export default async function WordPage({
         {/* ================= ACTIONS ================= */}
         <div className="mt-14 flex flex-wrap items-center gap-4">
 
-          <button className="rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-sm font-semibold text-zinc-700 transition-all hover:bg-zinc-100">
+          <button onClick={handleShare} className="rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-sm font-semibold text-zinc-700 transition-all hover:bg-zinc-100">
             Share
           </button>
 

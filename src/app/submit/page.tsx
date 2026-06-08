@@ -21,49 +21,50 @@ export default function AddWordPage() {
     });
   };
 
- const handleSubmit = async (e: any) => {
-  e.preventDefault();
-  setLoading(true);
-  setMessage("");
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
 
-  try {
-    const res = await fetch("/api/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch("/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.error || "Failed");
+      if (!res.ok) {
+        throw new Error(data.error || "Failed");
+      }
+
+      setMessage("Submitted successfully ✅");
+
+      setForm({
+        word: "",
+        word_en: "",
+        meaning: "",
+        example: "",
+        language: "GARHWALI",
+      });
+    } catch (err: any) {
+      setMessage(err.message || "Something went wrong ❌");
+    } finally {
+      setLoading(false);
     }
-
-    setMessage("Submitted successfully ✅");
-
-    setForm({
-      word: "",
-      word_en: "",
-      meaning: "",
-      example: "",
-      language: "GARHWALI",
-    });
-  } catch (err: any) {
-    setMessage(err.message || "Something went wrong ❌");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
   return (
     <div className="min-h-screen bg-linear-to-br from-zinc-100 to-zinc-200 flex items-center justify-center">
       <div className="w-full max-w-lg px-6">
-
         {/* Header */}
         <div className="mb-6 text-center">
-          <h1 className="text-4xl font-bold text-zinc-800">Add New Word</h1>
-          <p className="text-sm text-zinc-500 mt-1">
+          <h1 className="text-4xl font-bold text-zinc-800 mb-5">
+            Add New Word
+          </h1>
+          <p className="text-sm text-zinc-500 mt-5 font-bold">
             Expand your regional dictionary
           </p>
         </div>
@@ -73,7 +74,6 @@ export default function AddWordPage() {
           onSubmit={handleSubmit}
           className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-zinc-200 space-y-5"
         >
-
           {/* Word */}
           <div>
             <label className="text-sm font-medium text-zinc-900">Word</label>
@@ -87,15 +87,19 @@ export default function AddWordPage() {
             />
           </div>
 
-          {/* English */}
+          {/* Hinglish */}
           <div>
-            <label className="text-sm font-medium text-zinc-600">Word in Hinglish</label>
+            <label className="text-sm font-medium text-zinc-600">
+              Word in English
+            </label>
             <input
               name="word_en"
               value={form.word_en}
               onChange={handleChange}
-              placeholder="like सिमन्या/पैलाग as simanya/pailag"
-              className="w-full mt-1 p-3 rounded-lg border text-black placeholder:text-zinc-300 border-zinc-300 focus:ring-2 focus:ring-gray-500 focus:outline-none transition"
+              maxLength={20}
+              placeholder="like : Namaste"
+              className="w-full mt-1 p-3 rounded-lg border text-black placeholder:text-zinc-300 border-zinc-300 focus:ring-2 focus:ring-gray-500 focus:outline-none transition "
+              required
             />
           </div>
 
@@ -106,8 +110,9 @@ export default function AddWordPage() {
               name="meaning"
               value={form.meaning}
               onChange={handleChange}
-              placeholder="Enter meaning..."
-              rows={3}
+              maxLength={100}
+              placeholder={"like : नमस्ते\nGreeting used to say hello"}
+              rows={2}
               className="w-full mt-1 p-3 rounded-lg border text-black placeholder:text-zinc-300 border-zinc-300 focus:ring-2 focus:ring-gray-500 focus:outline-none transition"
               required
             />
@@ -120,20 +125,25 @@ export default function AddWordPage() {
               name="example"
               value={form.example}
               onChange={handleChange}
+              maxLength={150}
               placeholder="Example sentence..."
               rows={2}
+              required
               className="w-full mt-1 p-3 rounded-lg border text-black placeholder:text-zinc-300 border-zinc-300 focus:ring-2 focus:ring-gray-500 focus:outline-none transition"
             />
+            
           </div>
 
           {/* Language */}
           <div>
-            <label className="text-sm font-medium text-zinc-600">Language</label>
+            <label className="text-sm font-medium text-zinc-600">
+              Language
+            </label>
             <select
               name="language"
               value={form.language}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-lg border border-zinc-300 focus:ring-2 focus:ring-gray-500 focus:outline-none transition"
+              className="w-full mt-1 p-3 rounded-lg border border-zinc-300 text-zinc-900 focus:ring-2 focus:ring-gray-500 focus:outline-none transition"
             >
               <option value="GARHWALI">Garhwali</option>
               <option value="KUMAONI">Kumaoni</option>
@@ -152,9 +162,7 @@ export default function AddWordPage() {
 
           {/* Message */}
           {message && (
-            <p className="text-sm text-center text-zinc-600">
-              {message}
-            </p>
+            <p className="text-sm text-center text-zinc-600">{message}</p>
           )}
         </form>
       </div>

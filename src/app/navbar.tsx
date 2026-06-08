@@ -47,7 +47,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div
           className={`flex items-center justify-between gap-3 transition-all duration-300 ${
-            isScrolled ? "min-h-16 py-2" : "min-h-20 py-3"
+            isScrolled ? "min-h-16 py-1" : "min-h-20 py-1"
           }`}
         >
           <Link

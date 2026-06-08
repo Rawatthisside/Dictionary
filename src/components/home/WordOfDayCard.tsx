@@ -44,9 +44,6 @@ export default function WordOfDayCard({ wordOfDay }: WordOfDayCardProps) {
             Updated daily
           </div>
 
-          <button className="rounded-xl border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100">
-            Save
-          </button>
         </div>
       </div>
     </div>

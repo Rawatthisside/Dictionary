@@ -25,17 +25,18 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
   const [error, setError] = useState("");
   const [languageIndex, setLanguageIndex] = useState(0);
 
+  const [searchFinished, setSearchFinished] = useState(false);
+
   const activeRequestRef = useRef<AbortController | null>(null);
 
   const trimmedQuery = query.trim();
   const isTyping = Boolean(trimmedQuery) && trimmedQuery !== debouncedQuery;
 
-  const showNoResults =
-    !isLoading &&
-    !isTyping &&
-    !error &&
-    Boolean(trimmedQuery) &&
-    results.length === 0;
+const showNoResults =
+  searchFinished &&
+  !isLoading &&
+  !error &&
+  results.length === 0;
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -50,7 +51,7 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
       () => {
         setDebouncedQuery(trimmedQuery);
       },
-      trimmedQuery ? 2000 : 0,
+      trimmedQuery ? 500 : 0,
     );
 
     return () => window.clearTimeout(timer);
@@ -63,15 +64,17 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
       activeRequestRef.current?.abort();
 
       if (!debouncedQuery) {
-        setResults([]);
-        setIsLoading(false);
-        return;
-      }
+  setResults([]);
+  setIsLoading(false);
+  setSearchFinished(false);
+  return;
+}
 
       const controller = new AbortController();
       activeRequestRef.current = controller;
 
-      setIsLoading(true);
+     setSearchFinished(false);
+setIsLoading(true);
 
       try {
         const res = await fetch(
@@ -85,16 +88,18 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
         if (!res.ok) {
           throw new Error("Search failed");
         }
+const data: SearchResult[] = await res.json();
 
-        const data: SearchResult[] = await res.json();
-        setResults(data);
+setResults(data);
+setSearchFinished(true);
       } catch (err) {
         if (err instanceof Error && err.name === "AbortError") {
           return;
         }
 
-        setResults([]);
-        setError("Something went wrong while searching.");
+       setResults([]);
+setError("Something went wrong while searching.");
+setSearchFinished(true);
       } finally {
         if (activeRequestRef.current === controller) {
           setIsLoading(false);
@@ -104,6 +109,7 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
 
     search();
   }, [debouncedQuery]);
+
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#f4f7fb] text-zinc-900">
@@ -121,7 +127,7 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
       </div>
 
       <main className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-6 sm:pb-16 sm:pt-16">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid items-start gap-10 lg:grid-cols-2">
           <div>
             <HomeHeroSection
               language={HOME_LANGUAGES[languageIndex]}

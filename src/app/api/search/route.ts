@@ -12,8 +12,8 @@ export async function GET(req: Request) {
     const results = await prisma.word.findMany({
       where: {
         OR: [
-          { word: { contains: query, mode: "insensitive" } },
-          { word_en: { contains: query, mode: "insensitive" } },
+          { word: { startsWith: query, mode: "insensitive" } },
+          { word_en: { startsWith: query, mode: "insensitive" } },
         ],
       },
       orderBy: {
@@ -24,7 +24,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json(results);
   } catch (error) {
-    console.error("Search request failed:", error);
     return NextResponse.json(
       { message: "Unable to search right now." },
       { status: 500 },

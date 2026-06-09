@@ -82,7 +82,8 @@ export default function HomeHeroSection({
             <input
               id="main-search"
               className="w-full min-w-0 bg-transparent text-[15px] font-medium outline-none placeholder:text-zinc-400 sm:text-base"
-              placeholder="Search words, meanings, phrases..."
+              placeholder="Search words..."
+              minLength={5}
               value={query}
               onChange={(event) => onQueryChange(event.target.value)}
             />
@@ -106,7 +107,7 @@ export default function HomeHeroSection({
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 min-h-[32px]">
         {error && <p className="text-md font-bold text-red-500">{error}</p>}
 
         {showNoResults && (

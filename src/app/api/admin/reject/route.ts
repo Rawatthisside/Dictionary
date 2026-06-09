@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const { id } = await req.json();
 
-await prisma.submission.delete({
-  where: { id },
-});
+  await prisma.submission.delete({
+    where: { id },
+  });
 
   return NextResponse.json({ success: true });
 }

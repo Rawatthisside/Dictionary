@@ -110,7 +110,9 @@ export default function HomeHeroSection({
         {error && <p className="text-md font-bold text-red-500">{error}</p>}
 
         {showNoResults && (
-          <p className="text-md mt-5 font-bold text-zinc-800 text-center">No matches found.</p>
+          <p className="text-md mt-5 font-bold text-zinc-800 text-center">
+            No matches found.
+          </p>
         )}
       </div>
     </div>

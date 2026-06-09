@@ -89,7 +89,6 @@ export default function MonthsCard() {
 
   return (
     <section className="h-full rounded-[28px] border border-white/50 bg-white/75 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.05)] backdrop-blur-xl">
-      {/* Header */}
       <div className="mb-5">
         <span className="rounded-full bg-blue-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-blue-700">
           Learn
@@ -98,7 +97,7 @@ export default function MonthsCard() {
         <div className="mt-3">
           <h2 className="text-2xl font-black text-zinc-900">Months</h2>
 
-          {/* Language Switcher */}
+          {/* Language switch */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-6 rounded-2xl bg-zinc-100 p-2">
             <button
               onClick={() => setLanguage("garhwali")}
@@ -143,7 +142,6 @@ export default function MonthsCard() {
             key={month.english}
             className="group overflow-hidden rounded-2xl border border-zinc-100 bg-white transition-all duration-100 ease-out hover:-translate-y-0.5 hover:border-zinc-200 hover:shadow-[0_14px_30px_rgba(15,23,42,0.08)]"
           >
-            {/* Main Row */}
             <button
               type="button"
               onClick={() => toggleMonth(idx)}
@@ -194,7 +192,7 @@ export default function MonthsCard() {
               </div>
             </button>
 
-            {/* Hover Dropdown */}
+            {/* Dropdown */}
             <div
               className={`overflow-hidden border-t bg-zinc-50 px-4 transition-all duration-300 ease-out ${
                 expandedMonth === idx

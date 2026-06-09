@@ -76,9 +76,7 @@ export default function Navbar() {
             <div className="min-w-0 leading-none">
               <h2
                 className={`truncate font-black tracking-tight text-zinc-800 transition-all duration-300 ${
-                  isScrolled
-                    ? "text-base sm:text-lg"
-                    : "text-lg sm:text-[20px]"
+                  isScrolled ? "text-base sm:text-lg" : "text-lg sm:text-[20px]"
                 }`}
               >
                 Devasthali

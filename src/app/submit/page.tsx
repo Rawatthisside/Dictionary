@@ -87,7 +87,7 @@ export default function AddWordPage() {
             />
           </div>
 
-          {/* Hinglish */}
+          {/* English */}
           <div>
             <label className="text-sm font-medium text-zinc-600">
               Word in English
@@ -131,7 +131,6 @@ export default function AddWordPage() {
               required
               className="w-full mt-1 p-3 rounded-lg border text-black placeholder:text-zinc-300 border-zinc-300 focus:ring-2 focus:ring-gray-500 focus:outline-none transition"
             />
-            
           </div>
 
           {/* Language */}

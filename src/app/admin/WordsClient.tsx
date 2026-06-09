@@ -20,7 +20,7 @@ export default function WordsClient() {
   };
 
   useEffect(() => {
-    const delay = setTimeout(fetchData, 300); // debounce
+    const delay = setTimeout(fetchData, 300); // debounce 
     return () => clearTimeout(delay);
   }, [query, lang, page]);
 

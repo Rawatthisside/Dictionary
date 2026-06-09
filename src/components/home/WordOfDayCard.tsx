@@ -43,7 +43,6 @@ export default function WordOfDayCard({ wordOfDay }: WordOfDayCardProps) {
             <div className="h-2 w-2 rounded-full bg-emerald-500" />
             Updated daily
           </div>
-
         </div>
       </div>
     </div>

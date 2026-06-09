@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     console.error("Search request failed:", error);
     return NextResponse.json(
       { message: "Unable to search right now." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

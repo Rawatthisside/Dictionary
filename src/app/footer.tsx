@@ -3,19 +3,14 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#09090b] text-white">
-      {/* ================= BACKGROUND ================= */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Glow */}
         <div className="absolute left-0 top-0 h-[350px] w-[350px] rounded-full bg-blue-500/10 blur-3xl" />
 
         <div className="absolute bottom-0 right-0 h-[350px] w-[350px] rounded-full bg-violet-500/10 blur-3xl" />
       </div>
 
-      {/* ================= CONTENT ================= */}
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-16">
-        {/* ================= TOP ================= */}
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
-          {/* ================= LEFT ================= */}
           <div>
             {/* Logo */}
             <Link href="/" className="inline-flex items-center gap-4">
@@ -61,7 +56,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ================= RIGHT ================= */}
           <div className="grid gap-10 sm:grid-cols-2">
             {/* Navigation */}
             <div>
@@ -95,7 +89,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Stats */}
             <div>
               <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-zinc-500">
                 Platform
@@ -122,10 +115,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ================= DIVIDER ================= */}
         <div className="mt-14 h-px w-full bg-white/10" />
 
-        {/* ================= BOTTOM ================= */}
+        {/* bottom */}
         <div className="flex flex-col gap-4 py-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p className="text-sm text-zinc-500">
             © 2026 Devasthali. All rights reserved.

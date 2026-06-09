@@ -13,7 +13,7 @@ export default function ApproveRejectButtons({ id }: { id: number }) {
   const data = await res.json();
 
   if (!res.ok) {
-    alert(data.error); // show duplicate warning
+    alert(data.error);
     return;
   }
 
@@ -36,16 +36,16 @@ export default function ApproveRejectButtons({ id }: { id: number }) {
   <div className="mt-4 flex gap-3">
     <button
       onClick={approve}
-      className="flex-1 px-4 py-2 rounded-lg cursor-pointer bg-green-600 text-white text-sm font-medium 
-      hover:bg-green-700 active:scale-95 transition-all duration-150 shadow-sm"
+      className="flex-1 px-4 py-2 rounded-lg cursor-pointer bg-green-500 text-white text-sm font-medium 
+      hover:bg-green-600 active:scale-95 transition-all duration-150 shadow-sm"
     >
        Approve
     </button>
 
     <button
       onClick={reject}
-      className="flex-1 px-4 py-2 rounded-lg cursor-pointer bg-red-600 text-white text-sm font-medium 
-      hover:bg-red-700 active:scale-95 transition-all duration-150 shadow-sm"
+      className="flex-1 px-4 py-2 rounded-lg cursor-pointer bg-red-500 text-white text-sm font-medium 
+      hover:bg-red-600 active:scale-95 transition-all duration-150 shadow-sm"
     >
        Reject
     </button>

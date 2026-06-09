@@ -23,23 +23,19 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-screen bg-[#f4f7fb] text-zinc-900 antialiased">
-         <Toaster position="top-right" />
-        {/* Main Wrapper */}
+        <Toaster position="top-right" />
+
         <div className="relative flex min-h-screen flex-col">
-          {/* Global Background */}
           <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
             <div className="absolute top-0 left-0 h-[500px] w-[500px] rounded-full bg-blue-200/30 blur-3xl" />
 
             <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-violet-200/30 blur-3xl" />
           </div>
 
-          {/* Navbar */}
           <Navbar />
 
-          {/* Main Content */}
           <main className="flex-1">{children}</main>
 
-          {/* Footer */}
           <Footer />
         </div>
       </body>

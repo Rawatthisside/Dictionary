@@ -39,18 +39,19 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setLanguageIndex(
-        (current) => (current + 1) % HOME_LANGUAGES.length
-      );
+      setLanguageIndex((current) => (current + 1) % HOME_LANGUAGES.length);
     }, 2500);
 
     return () => window.clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setDebouncedQuery(trimmedQuery);
-    }, trimmedQuery ? 2000 : 0);
+    const timer = window.setTimeout(
+      () => {
+        setDebouncedQuery(trimmedQuery);
+      },
+      trimmedQuery ? 2000 : 0,
+    );
 
     return () => window.clearTimeout(timer);
   }, [trimmedQuery]);
@@ -78,7 +79,7 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
           {
             signal: controller.signal,
             cache: "no-store",
-          }
+          },
         );
 
         if (!res.ok) {
@@ -88,10 +89,7 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
         const data: SearchResult[] = await res.json();
         setResults(data);
       } catch (err) {
-        if (
-          err instanceof Error &&
-          err.name === "AbortError"
-        ) {
+        if (err instanceof Error && err.name === "AbortError") {
           return;
         }
 
@@ -123,37 +121,36 @@ export default function HomeClient({ wordOfDay }: HomeClientProps) {
       </div>
 
       <main className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-6 sm:pb-16 sm:pt-16">
-       <div className="grid items-center gap-10 lg:grid-cols-2">
-  <div>
-    <HomeHeroSection
-      language={HOME_LANGUAGES[languageIndex]}
-      query={query}
-      onQueryChange={setQuery}
-      isTyping={isTyping}
-      isLoading={isLoading}
-      error={error}
-      showNoResults={showNoResults}
-    />
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <HomeHeroSection
+              language={HOME_LANGUAGES[languageIndex]}
+              query={query}
+              onQueryChange={setQuery}
+              isTyping={isTyping}
+              isLoading={isLoading}
+              error={error}
+              showNoResults={showNoResults}
+            />
 
-    {/* Mobile: results directly below search */}
-    {results.length > 0 && (
-      <div className="mt-10 lg:hidden">
-        <SearchResultsSection results={results} />
-      </div>
-    )}
-  </div>
+            {/* Mobile */}
+            {results.length > 0 && (
+              <div className="mt-10 lg:hidden">
+                <SearchResultsSection results={results} />
+              </div>
+            )}
+          </div>
 
-  <WordOfDayCard wordOfDay={wordOfDay} />
-</div>
+          <WordOfDayCard wordOfDay={wordOfDay} />
+        </div>
 
-<FloatingWebsiteCTA />
+        <FloatingWebsiteCTA />
 
-
-{results.length > 0 && (
-  <div className="hidden lg:block">
-    <SearchResultsSection results={results} />
-  </div>
-)}
+        {results.length > 0 && (
+          <div className="hidden lg:block">
+            <SearchResultsSection results={results} />
+          </div>
+        )}
 
         <section className="mt-20">
           <div className="grid gap-16 lg:grid-cols-12">

@@ -27,8 +27,8 @@ export default function ShareButton({
         toast.success("Link copied to clipboard!");
       }
     } catch (err) {
-  toast.error("Failed to share link");
-}
+      toast.error("Failed to share link");
+    }
   };
 
   return (

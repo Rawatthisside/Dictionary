@@ -11,9 +11,7 @@ export const getWordOfDay = unstable_cache(
       return null;
     }
 
-    const dayNumber = Math.floor(
-      Date.now() / MILLISECONDS_PER_DAY
-    );
+    const dayNumber = Math.floor(Date.now() / MILLISECONDS_PER_DAY);
 
     return prisma.word.findFirst({
       skip: dayNumber % count,
@@ -28,5 +26,5 @@ export const getWordOfDay = unstable_cache(
   ["word-of-day"],
   {
     revalidate: 86400,
-  }
+  },
 );

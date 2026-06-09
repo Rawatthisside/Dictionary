@@ -13,24 +13,24 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
-    // To Check duplicate
-   const exists = await prisma.word.findFirst({
-  where: {
-    word: {
-      equals: submission.word,
-      mode: "insensitive",
-    },
-  },
-});
+    // To Check duplicate word
+    const exists = await prisma.word.findFirst({
+      where: {
+        word: {
+          equals: submission.word,
+          mode: "insensitive",
+        },
+      },
+    });
 
     if (exists) {
       return NextResponse.json(
         { error: "Word already exists" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    // ✅ Create new word
+    //  Create new word
     await prisma.word.create({
       data: {
         word: submission.word,
@@ -41,13 +41,12 @@ export async function POST(req: Request) {
       },
     });
 
-    // 🧹 Remove from submissions
+    //  Remove from submissions
     await prisma.submission.delete({
       where: { id },
     });
 
     return NextResponse.json({ success: true });
-
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Failed" }, { status: 500 });

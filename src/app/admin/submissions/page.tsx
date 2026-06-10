@@ -10,8 +10,8 @@ export default async function SubmissionsPage() {
   });
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-zinc-900">
+    <div className="max-w-3xl mx-auto px-4 mt-10 sm:px-6 py-6 sm:py-10">
+      <h1 className="text-2xl mt-10 text-center sm:text-3xl font-bold mb-6 text-zinc-100">
         Pending Submissions
       </h1>
 

@@ -132,7 +132,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center justify-center rounded-2xl bg-zinc-900 px-5 text-sm font-semibold text-white transition-all hover:bg-gray-700"
             >
-              Explore Devasthali
+              Explore Devasthali Website
             </a>
           </div>
 
@@ -211,7 +211,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center rounded-2xl bg-zinc-900 px-5 text-sm font-semibold text-white transition-all hover:bg-gray-700"
               >
-                Explore Devasthali
+                Explore Devasthali Website
               </a>
             </div>
           </div>

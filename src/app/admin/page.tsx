@@ -5,15 +5,6 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-zinc-100">
       <div className="max-w-3xl mx-auto px-6 py-10">
-        <Image
-          src="/dictionarybg.png"
-          alt="Dictionary background"
-          width={1200}
-          height={240}
-          className="w-full h-auto rounded-xl mb-6"
-          priority
-        />
-
         <h1 className="text-3xl font-bold mb-6 text-black">
           All Words
         </h1>

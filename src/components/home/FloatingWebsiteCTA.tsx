@@ -44,7 +44,7 @@ export default function FloatingWebsiteCTA({
             </h3>
 
             <p className="truncate text-[11px] text-zinc-500">
-              Official channel
+              Official Website
             </p>
           </div>
         </div>

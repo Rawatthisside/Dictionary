@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 import FloatingWebsiteCTA from "@/components/home/FloatingWebsiteCTA";
 import HomeHeroSection from "@/components/home/HomeHeroSection";

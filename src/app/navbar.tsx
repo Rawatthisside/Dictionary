@@ -64,7 +64,8 @@ export default function Navbar() {
             >
               <img
                 src="/Logo.svg"
-                alt="Logo"
+                alt="Devasthali"
+                fetchPriority="high"
                 className={`object-contain transition-all duration-300 ${
                   isScrolled
                     ? "h-12 w-12 sm:h-14 sm:w-14"

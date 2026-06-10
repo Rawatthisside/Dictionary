@@ -103,8 +103,8 @@ export default function MonthsCard() {
               onClick={() => setLanguage("garhwali")}
               className={`rounded-xl px-3 py-2 text-xs font-semibold transition-all ${
                 language === "garhwali"
-                  ? "bg-white text-emerald-600 shadow-sm"
-                  : "text-zinc-600"
+                  ? "bg-white text-emerald-500 shadow-sm"
+                  : "text-zinc-900"
               }`}
             >
               Garhwali
@@ -114,8 +114,8 @@ export default function MonthsCard() {
               onClick={() => setLanguage("kumaoni")}
               className={`rounded-xl px-3 py-2 text-xs font-semibold transition-all ${
                 language === "kumaoni"
-                  ? "bg-white text-red-600 shadow-sm"
-                  : "text-zinc-600"
+                  ? "bg-white text-red-500 shadow-sm"
+                  : "text-zinc-900"
               }`}
             >
               Kumaoni
@@ -125,8 +125,8 @@ export default function MonthsCard() {
               onClick={() => setLanguage("jaunsari")}
               className={`rounded-xl px-3 py-2 text-xs font-semibold transition-all ${
                 language === "jaunsari"
-                  ? "bg-white text-blue-600 shadow-sm"
-                  : "text-zinc-600"
+                  ? "bg-white text-blue-500 shadow-sm"
+                  : "text-zinc-900"
               }`}
             >
               Jaunsari

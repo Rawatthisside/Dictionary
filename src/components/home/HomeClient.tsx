@@ -116,14 +116,6 @@ setSearchFinished(true);
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-blue-200/30 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-violet-200/30 blur-3xl" />
-
-        <Image
-          src="/dictionarybg.png"
-          alt="Background"
-          fill
-          priority
-          className="object-cover opacity-[0.03]"
-        />
       </div>
 
       <main className="relative z-10 mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-6 sm:pb-16 sm:pt-16">

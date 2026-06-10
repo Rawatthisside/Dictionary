@@ -150,7 +150,7 @@ export default async function WordPage({
           <ShareButton word={result.word} meaning={result.meaning} />
 
           <Link
-            href="/add-word"
+            href="/submit"
             className="rounded-2xl border border-blue-200 bg-blue-50 px-6 py-3 text-sm font-semibold text-blue-700 transition-all hover:bg-blue-100"
           >
             Add Similar Word

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import ShareButton from "@/components/word/ShareButton";
+import { getWord } from "@/lib/get-words";
+
+export const revalidate = 86400;
 
 export default async function WordPage({
   params,
@@ -10,9 +13,7 @@ export default async function WordPage({
   const { word } = await params;
   const decodedWord = decodeURIComponent(word).trim();
 
-  const result = await prisma.word.findUnique({
-    where: { word: decodedWord },
-  });
+  const result = await getWord(decodedWord);
 
   if (!result) {
     return (

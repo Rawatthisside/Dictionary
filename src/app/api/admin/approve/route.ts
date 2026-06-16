@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
   try {
@@ -40,7 +41,8 @@ export async function POST(req: Request) {
         language: submission.language,
       },
     });
-
+revalidatePath("/");
+revalidatePath(`/word/${submission.word}`);
     //  Remove from submissions
     await prisma.submission.delete({
       where: { id },

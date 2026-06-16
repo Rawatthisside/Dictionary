@@ -17,3 +17,9 @@ export type AnimatedLanguage = {
   name: string;
   color: string;
 };
+
+export type RecentWord = {
+  word: string;
+  meaning: string;
+  language: string;
+};

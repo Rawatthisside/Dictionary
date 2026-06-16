@@ -7,16 +7,18 @@ import HomeHeroSection from "@/components/home/HomeHeroSection";
 import SearchResultsSection from "@/components/home/SearchResultsSection";
 import WordOfDayCard from "@/components/home/WordOfDayCard";
 import { HOME_LANGUAGES } from "@/components/home/constants";
-import type { SearchResult, WordOfDay } from "@/components/home/types";
+import type { RecentWord, SearchResult, WordOfDay } from "@/components/home/types";
+import RecentlyAddedWords from "@/components/home/RecentlyAddedWords";
 
 import MonthsCard from "@/app/month";
 import WeekdaysCard from "@/app/week";
 
 type HomeClientProps = {
   wordOfDay: WordOfDay | null;
+  RecentWords: RecentWord[];
 };
 
-export default function HomeClient({ wordOfDay }: HomeClientProps) {
+export default function HomeClient({ wordOfDay, RecentWords }: HomeClientProps) {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -148,7 +150,7 @@ setSearchFinished(true);
             <SearchResultsSection results={results} />
           </div>
         )}
-
+<RecentlyAddedWords recentWords={RecentWords} />
         <section className="mt-20">
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-6">

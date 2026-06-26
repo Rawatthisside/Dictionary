@@ -21,7 +21,7 @@ export default function WordOfDayCard({
                 Word of the Day
               </p>
 
-              <h2 className="mt-3 break-words text-4xl font-black tracking-tight text-zinc-900">
+              <h2 className="mt-3 wrap-break-word text-4xl font-black tracking-tight text-zinc-900">
                 {wordOfDay?.word ?? "Loading..."}
               </h2>
             </div>
@@ -38,7 +38,7 @@ export default function WordOfDayCard({
           </div>
 
           {/* Meaning */}
-          <div className="mt-8 rounded-[24px] border border-zinc-100 bg-white p-5 shadow-sm">
+          <div className="mt-8 rounded-3xl border border-zinc-100 bg-white p-5 shadow-sm">
             <div className="mb-3 flex items-center gap-2">
               <div className="h-5 w-1 rounded-full bg-blue-500" />
 

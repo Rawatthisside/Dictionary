@@ -14,8 +14,6 @@ export default function ShareButton({
   const handleShare = async () => {
     try {
       const shareData = {
-        title: word,
-        text: meaning,
         url: window.location.href,
       };
 

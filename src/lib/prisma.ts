@@ -17,6 +17,8 @@ const pool =
   globalForPrisma.pgPool ??
   new Pool({
     connectionString: databaseUrl,
+    max: 2,
+    allowExitOnIdle: true,
   });
 
 const adapter = new PrismaPg(pool);
@@ -25,7 +27,6 @@ export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     adapter,
-    log: ["query", "warn", "error"],
   });
 
 if (process.env.NODE_ENV !== "production") {

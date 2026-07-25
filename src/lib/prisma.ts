@@ -17,7 +17,7 @@ const pool =
   globalForPrisma.pgPool ??
   new Pool({
     connectionString: databaseUrl,
-    max: 2,
+    max: 1,
     allowExitOnIdle: true,
   });
 

@@ -5,6 +5,7 @@ import { Pool } from "pg";
 const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
   pgPool?: Pool;
+  pgAdapter?: PrismaPg;
 };
 
 const databaseUrl = process.env.DATABASE_URL;
@@ -21,7 +22,7 @@ const pool =
     allowExitOnIdle: true,
   });
 
-const adapter = new PrismaPg(pool);
+const adapter = globalForPrisma.pgAdapter ?? new PrismaPg(pool);
 
 export const prisma =
   globalForPrisma.prisma ??
@@ -31,5 +32,6 @@ export const prisma =
 
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.pgPool = pool;
+  globalForPrisma.pgAdapter = adapter;
   globalForPrisma.prisma = prisma;
 }

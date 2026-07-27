@@ -4,6 +4,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url = env("DATABASE_URL") // neon pooler string for traffic
+  directurl = env("DIRECT_DATABASE_URL") // neon direct string for migrations ...
 }
 
 model Word {

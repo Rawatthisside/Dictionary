@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pageTitle = `"${result.word}" - Meaning in ${result.language.toLowerCase()}`;
   const pageDescription = `Learn the meaning and examples of the ${result.language.toLowerCase()} word "${result.word}": ${result.meaning}`;
   
-  const shareImageUrl = "https://dictionary-theta-eight.vercel.app/"; 
+  const shareImageUrl = "https://dictionary-theta-eight.vercel.app/banner.png"; 
 
   return {
     title: pageTitle,

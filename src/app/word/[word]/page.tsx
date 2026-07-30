@@ -2,10 +2,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import ShareButton from "@/components/word/ShareButton";
 import { getWord } from "@/lib/get-words";
-// 1. ADD THIS IMPORT AT THE TOP
 import { Metadata } from "next"; 
 
-// 2. PASTE THIS TYPE AND METADATA FUNCTION HERE (ABOVE THE WORDPAGE COMPONENT)
 type Props = {
   params: Promise<{ word: string }>;
 };
@@ -25,6 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const pageTitle = `"${result.word}" - Meaning in ${result.language.toLowerCase()}`;
   const pageDescription = `Learn the meaning and examples of the ${result.language.toLowerCase()} word "${result.word}": ${result.meaning}`;
+  
+  const shareImageUrl = "https://dictionary-theta-eight.vercel.app/"; 
 
   return {
     title: pageTitle,
@@ -35,16 +35,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       locale: "en_IN",
       siteName: "Pahadi Dictionary",
+      images: [
+        {
+          url: shareImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${result.word}`,
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image", 
       title: pageTitle,
       description: pageDescription,
+      images: [shareImageUrl],
     },
   };
 }
 
-// YOUR EXISTING COMPONENT REMAINS EXACTLY THE SAME BELOW HERE
 export default async function WordPage({
   params,
 }: {

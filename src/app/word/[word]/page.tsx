@@ -2,9 +2,49 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import ShareButton from "@/components/word/ShareButton";
 import { getWord } from "@/lib/get-words";
+// 1. ADD THIS IMPORT AT THE TOP
+import { Metadata } from "next"; 
 
-export const revalidate = 86400;
+// 2. PASTE THIS TYPE AND METADATA FUNCTION HERE (ABOVE THE WORDPAGE COMPONENT)
+type Props = {
+  params: Promise<{ word: string }>;
+};
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { word } = await params;
+  const decodedWord = decodeURIComponent(word).trim();
+
+  const result = await getWord(decodedWord);
+
+  if (!result) {
+    return {
+      title: "Word Not Found - Pahadi Dictionary",
+      description: "The word you are looking for does not exist in the dictionary yet.",
+    };
+  }
+
+  const pageTitle = `"${result.word}" - Meaning in ${result.language.toLowerCase()}`;
+  const pageDescription = `Learn the meaning and examples of the ${result.language.toLowerCase()} word "${result.word}": ${result.meaning}`;
+
+  return {
+    title: pageTitle,
+    description: pageDescription,
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: "article",
+      locale: "en_IN",
+      siteName: "Pahadi Dictionary",
+    },
+    twitter: {
+      card: "summary",
+      title: pageTitle,
+      description: pageDescription,
+    },
+  };
+}
+
+// YOUR EXISTING COMPONENT REMAINS EXACTLY THE SAME BELOW HERE
 export default async function WordPage({
   params,
 }: {

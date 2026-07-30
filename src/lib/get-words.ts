@@ -8,8 +8,9 @@ export const getWord = (word: string) =>
         where: { word },
       });
     },
-    [`word-${word}`],
+    ["word-lookup"],
     {
-      revalidate: 86400,
+      revalidate: 86400, // Cache for 24 hrs
+      tags: [`word-${word}`], 
     },
   )();

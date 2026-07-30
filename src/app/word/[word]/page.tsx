@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!result) {
     return {
-      title: "Word Not Found - Pahadi Dictionary",
+      title: "Word Not Found",
       description: "The word you are looking for does not exist in the dictionary yet.",
     };
   }
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: pageDescription,
       type: "article",
       locale: "en_IN",
-      siteName: "Pahadi Dictionary",
+      siteName: "Devasthali multilingual dictionary",
       images: [
         {
           url: shareImageUrl,
